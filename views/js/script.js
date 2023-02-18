@@ -13,15 +13,16 @@ $(function() {
             processData: false,
             dataType:"text",
             success: function(){},
-            error: function () {},
-            complete: function (answer) {
-                document.getElementById("hoursWorked").value = "test";
-                document.getElementById("minsLate").value = "test";
+            error: function () {
+                alert ("Error");
             }
-        })
-
+        });
     });
-})
+});
+
+function getTotalHours($totalHours){
+    document.getElementById("hoursWorked").value = $totalHours;
+}
 
 // function getEmpLog(){
 //     // var empID = document.getElementById("empID").value;
