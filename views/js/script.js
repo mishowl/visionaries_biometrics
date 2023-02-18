@@ -15,22 +15,7 @@ $(function() {
             success: function(){},
             error: function () {
                 alert ("Error");
-            }
+            }, complete: function(){}
         });
     });
 });
-
-function getTotalHours($totalHours){
-    document.getElementById("hoursWorked").value = $totalHours;
-}
-
-// function getEmpLog(){
-//     // var empID = document.getElementById("empID").value;
-    
-//     $.ajax({
-//         type: "POST",
-//         url: "ajax/getEmpLog_ajax.php",
-//         data: empID,
-//         success: function(answer){}
-//     })
-// }
