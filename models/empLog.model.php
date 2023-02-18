@@ -60,6 +60,7 @@ class empLogModel{
             $totalHoursAfternoon = 0;
         }
         $totalHours = $totalHoursMorning + $totalHoursAfternoon;
+        $minsLate = $hoursLateMorning + $hoursLateAfternoon;
     }
 }
 ?>
