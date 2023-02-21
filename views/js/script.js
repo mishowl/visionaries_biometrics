@@ -1,5 +1,5 @@
 $(function() {
-    //Submit checkEmp form
+    //submit form
     $('#empLog-form').submit(function(e) {
         e.preventDefault();
         var empID = $("#empID").val();
@@ -11,8 +11,11 @@ $(function() {
             cache: false,
             contentType: false,
             processData: false,
-            dataType:"text",
-            success: function(){},
+            dataType:"json",
+            success: function(data){
+                document.getElementById('hoursWorked').value = data[0];
+                document.getElementById('minsLate').value = data[1];
+            },
             error: function () {
                 alert ("Error");
             }, complete: function(){}

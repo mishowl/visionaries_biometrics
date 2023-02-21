@@ -2,7 +2,7 @@
 require_once "connection.php";
 
 class empLogModel{
-    public function mdlGetEmpLog($empID){
+    static public function mdlGetEmpLog($empID){
         $db = new Connection();
 		$pdo = $db->connect();
         
@@ -15,10 +15,10 @@ class empLogModel{
         // (log-in without logout) or (log-out without log-in) - considered absent either morning or afternoon
 
         //sample data only
-        $timeInMorning = "";
-        $timeOutMorning = "";
-        $timeInAfternoon = "";
-        $timeOutAfternoon = "";
+        $timeInMorning = "08:20:00";
+        $timeOutMorning = "12:00:00";
+        $timeInAfternoon = "13:40:00";
+        $timeOutAfternoon = "17:00:00";
 
         //morning
         if (isset($timeInMorning) or isset($timeOutMorning)){
@@ -61,6 +61,9 @@ class empLogModel{
         }
         $totalHours = $totalHoursMorning + $totalHoursAfternoon;
         $minsLate = $hoursLateMorning + $hoursLateAfternoon;
+
+        $empLog = array($hoursWorked, $minsLate);
+        echo json_encode($empLog);
     }
 }
 ?>

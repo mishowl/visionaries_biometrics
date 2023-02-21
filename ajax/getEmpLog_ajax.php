@@ -10,4 +10,10 @@ class empLog{
         $answer = (new empLogController) -> ctrGetEmpLog($empID);
     }
 }
+
+$get_empLog = new empLog();
+// $get_empLog -> empID = $_POST["empID"];
+$get_empLog -> empID = "";
+$get_empLog -> getEmpLog();
+
 ?>
