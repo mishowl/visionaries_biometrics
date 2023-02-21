@@ -15,18 +15,24 @@ class empLogModel{
         // (log-in without logout) or (log-out without log-in) - considered absent either morning or afternoon
 
         //sample data only
-        $timeInMorning = "08:20:00";
-        $timeOutMorning = "12:00:00";
-        $timeInAfternoon = "13:40:00";
-        $timeOutAfternoon = "17:00:00";
+        $timeInMorning = strtotime("08:31:00");
+        $timeOutMorning = strtotime("12:31:00");
+        $timeInAfternoon = strtotime("13:31:00");
+        $timeOutAfternoon = strtotime("15:31:00");
+
+        //declarations
+        $morningLate = strtotime("08:30:00");
+        $morningAbsent = strtotime("08:45:00");
+        $afternoonLate = strtotime("13:30:00");
+        $afternoonAbsent = strtotime("13:45:00");
 
         //morning
-        if (isset($timeInMorning) or isset($timeOutMorning)){
-            if ($timeInMorning <= '08:31:00'){
+        if (isset($timeInMorning) and isset($timeOutMorning)){
+            if ($timeInMorning <=  $morningLate){
                 $statusMorning = "on-time";
-            } elseif (($timeInMorning >= '08:31:00') and ($timeInMorning <= '08:45:00')){
+            } elseif (($timeInMorning >= $morningLate) and ($timeInMorning <= $morningAbsent)){
                 $statusMorning = "late";
-                $hoursLateMorning = '08:30:00' - $timeInMorning;
+                $minsLateMorning = floor(abs($morningLate - $timeInMorning)/60);
             } else {
                 $statusMorning = "absent";
             }
@@ -35,12 +41,12 @@ class empLogModel{
         }
 
         //afternoon
-        if (isset($timeInAfternoon) or isset($timeOutAfternoon)){
-            if ($timeInAfternoon <= '13:31:00'){
+        if (isset($timeInAfternoon) and isset($timeOutAfternoon)){
+            if ($timeInAfternoon <= $afternoonLate){
                 $statusAfternoon = "on-time";
-            } elseif (($timeInAfternoon >= '13:31:00') and ($timeInAfternoon <= '13:45:00')){
+            } elseif (($timeInAfternoon >= $afternoonLate) and ($timeInAfternoon <= $afternoonAbsent)){
                 $statusAfternoon = "late";
-                $hoursLateAfternoon = '13:30:00' - $timeInAfternoon;
+                $minsLateAfternoon = floor(abs($afternoonLate - $timeInAfternoon)/60);
             } else {
                 $statusAfternoon = "absent";
             }
@@ -50,19 +56,19 @@ class empLogModel{
 
         //calculate hours worked
         if ($statusMorning != "absent"){
-            $totalHoursMorning = $timeOutMorning - $timeInMorning;
+            $totalHoursMorning = floor(abs($timeInMorning - $timeOutMorning)/3600);
         } else {
             $totalHoursMorning = 0;
         }
         if ($statusAfternoon != "absent"){
-            $totalHoursAfternoon = $timeOutAfternoon - $timeInAfternoon;
+            $totalHoursAfternoon = floor(abs($timeInAfternoon - $timeOutAfternoon)/3600);
         } else {
             $totalHoursAfternoon = 0;
         }
-        $totalHours = $totalHoursMorning + $totalHoursAfternoon;
-        $minsLate = $hoursLateMorning + $hoursLateAfternoon;
+        $totalHours = $totalHoursMorning + $totalHoursAfternoon . " hours";
+        $totalMinsLate = $minsLateMorning + $minsLateAfternoon . " minutes";
 
-        $empLog = array($hoursWorked, $minsLate);
+        $empLog = array($totalHours, $totalMinsLate);
         echo json_encode($empLog);
     }
 }

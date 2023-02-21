@@ -11,9 +11,10 @@ class empLog{
     }
 }
 
-$get_empLog = new empLog();
-// $get_empLog -> empID = $_POST["empID"];
-$get_empLog -> empID = "";
-$get_empLog -> getEmpLog();
+if (isset($_POST["empID"])){
+    $get_empLog = new empLog();
+    $get_empLog -> empID = $_POST["empID"];
+    $get_empLog -> getEmpLog();
+}
 
 ?>

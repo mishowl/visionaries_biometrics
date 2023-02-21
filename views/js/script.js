@@ -7,10 +7,10 @@ $(function() {
         $.ajax({
             type: "POST",
             url: "ajax/getEmpLog_ajax.php",
-            data: empID,
+            data: {"empID" : empID},
             cache: false,
-            contentType: false,
-            processData: false,
+            // contentType: false,
+            // processData: false,
             dataType:"json",
             success: function(data){
                 document.getElementById('hoursWorked').value = data[0];
