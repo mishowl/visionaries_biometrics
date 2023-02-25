@@ -3,12 +3,19 @@
         <title>Biometrics</title>
         <script src="views/js/jquery-3.6.3.min.js"></script>
         <script src="views/js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
       <form id="empLog-form">
-        <input type="number" id="empID" name="empID" placeholder="Enter Employee ID">
-        <button type="submit">Calculate</button>
-        <br><br>
+        <input type="number" id="empID" name="empID" min="1" placeholder="Enter Employee ID">
+        <button type="submit">Calculate</button><br>
+        <p>Date : <input type="text" id="logDate" name="logDate" value="" readonly><br>
+          Morning | Time In: <input type="text" id="morningTimeIn" name="morningTimeIn" value="" readonly>
+          Time Out: <input type="text" id="morningTimeOut" name="morningTimeOut" value="" readonly>
+          Status: <input type="text" id="morningStatus" name="morningStatus" value="" readonly><br>
+          Afternoon | Time In: <input type="text" id="afternoonTimeIn" name="afternoonTimeIn" value="" readonly>
+          Time Out: <input type="text" id="afternoonTimeOut" name="afternoonTimeOut" value="" readonly>
+          Status: <input type="text" id="afternoonStatus" name="afternoonStatus" value="" readonly></p>
         <p>Total number of hours worked for the day: <input type="text" id="hoursWorked" name="hoursWorked" value="" readonly> </p>
         <p>Number of minutes late: <input type="text" id="minsLate" name="minsLate" value="" readonly> </p>
       </form>
