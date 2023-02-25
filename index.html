@@ -1,23 +1,88 @@
-<html>
-    <head>
-        <title>Biometrics</title>
-        <script src="views/js/jquery-3.6.3.min.js"></script>
-        <script src="views/js/script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </head>
-    <body>
-      <form id="empLog-form">
-        <input type="number" id="empID" name="empID" min="1" placeholder="Enter Employee ID">
-        <button type="submit">Calculate</button><br>
-        <p>Date : <input type="text" id="logDate" name="logDate" value="" readonly><br>
-          Morning | Time In: <input type="text" id="morningTimeIn" name="morningTimeIn" value="" readonly>
-          Time Out: <input type="text" id="morningTimeOut" name="morningTimeOut" value="" readonly>
-          Status: <input type="text" id="morningStatus" name="morningStatus" value="" readonly><br>
-          Afternoon | Time In: <input type="text" id="afternoonTimeIn" name="afternoonTimeIn" value="" readonly>
-          Time Out: <input type="text" id="afternoonTimeOut" name="afternoonTimeOut" value="" readonly>
-          Status: <input type="text" id="afternoonStatus" name="afternoonStatus" value="" readonly></p>
-        <p>Total number of hours worked for the day: <input type="text" id="hoursWorked" name="hoursWorked" value="" readonly> </p>
-        <p>Number of minutes late: <input type="text" id="minsLate" name="minsLate" value="" readonly> </p>
-      </form>
-    </body>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biometrics Data Assessment</title>
+    <link rel="stylesheet" href="public/styles.css">
+    <link rel="icon" href="views/img/fingerprint-scan.png">
+    <script src="views/js/jquery-3.6.3.min.js"></script>
+    <script src="views/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="bg-neutral-100 font-prompt overflow-y-scroll overflow-x-hidden m-0 p-0">
+    <section id="Home" class="bg-center bg-cover bg-no-repeat h-screen" style="background-image: url('views/img/bg.jpg') ">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="p-20 md:p-36 md:pt-56 pt-20">
+                <form id="empLog-form">
+                    <br>
+                    <h1 class="text-white text-6xl align-center">Biometrics Data Assessment</h1>
+                    <br>
+                    <input class="p-3 shadow appearance-none rounded-full w-7/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="empID" name="empID" min="1" placeholder="Enter Employee ID">
+                    <br><br>
+                    <button class="bg-transparent hover:bg-purple-300 text-purple-300 font-semibold hover:text-black py-2 px-4 border border-purple-300 hover:border-transparent rounded-full transition duration-300" type="submit"><a>Calculate</a></button>
+                </form>
+            </div>
+
+            <div class="md:h-screen flex items-center justify-center">
+                <div class="bg-slate-300/25 w-7/12 h-7/12 rounded-3xl p-24">
+                    <p class="text-white opacity-100 text-4xl leading-8">Total Numbers of Hours Worked:</p>
+                    <br>
+                    <input class="p-3 shadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="hoursWorked" name="hoursWorked" value="" placeholder="Total Hours Worked" readonly>
+                    <br><br><br>
+                    <p class="text-white opacity-100 text-4xl leading-8">Number of Minutes Late:</p>
+                    <br>
+                    <input class="p-3 shadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="minsLate" name="minsLate" value="" placeholder="Minutes Late" readonly>
+                    <br><br>
+                    <button class="bg-transparent hover:bg-purple-300 text-purple-300 font-semibold hover:text-black py-2 px-4 border border-purple-300 hover:border-transparent rounded-full transition duration-300 w-full"><a href="#AddInfo">Show Additional Info</a></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="AddInfo">
+        <div class="m:h-64 h-92 text-center p-14">
+            <h1 class="text-4xl uppercase">Additional Information</h1>
+            <hr class="w-24 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
+            <!--Date-->
+            <div class="flex items-center justify-center">
+                <div class="border-b border-purple-500 py-2">
+                    <input class="appearance-none bg-transparent w-full border-none text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" id="logDate" name="logDate" value="" placeholder="Date" aria-label="Full name" readonly>
+                </div>
+            </div>
+            <br>
+            <!--Morning-->
+            <div class="flex items-center justify-center">
+                <div class="border-b border-purple-500 py-2 mr-5">
+                    <input class="appearance-none bg-transparent w-full border-none text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text"  id="morningTimeIn" name="morningTimeIn" value="" placeholder="Morning Time In" aria-label="Full name" readonly>
+                </div>
+                <div class="border-b border-purple-500 py-2">
+                    <input class="appearance-none bg-transparent w-full border-none text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" id="morningTimeOut" name="morningTimeOut" value="" placeholder="Morning Time Out" aria-label="Full name" readonly>
+                </div>
+            </div>
+            <div class="flex items-center justify-center">
+                <div class="border-b border-purple-500 py-2">
+                    <input class="appearance-none bg-transparent w-full border-none text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text"id="morningStatus" name="morningStatus" value="" placeholder="Status" aria-label="Full name" readonly>
+                </div>
+            </div>
+            <br>
+            <!--Afternoon-->
+            <div class="flex items-center justify-center">
+                <div class="border-b border-purple-500 py-2 mr-5">
+                    <input class="appearance-none bg-transparent w-full border-none text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" id="afternoonTimeIn" name="afternoonTimeIn" value="" placeholder="Afternoon Time In" aria-label="Full name" readonly>
+                </div>
+                <div class="border-b border-purple-500 py-2">
+                    <input class="appearance-none bg-transparent w-full border-none text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" id="afternoonTimeOut" name="afternoonTimeOut" value="" placeholder="Afternoon Time Out" aria-label="Full name" readonly>
+                </div>
+            </div>
+            <div class="flex items-center justify-center">
+                <div class="border-b border-purple-500 py-2">
+                    <input class="appearance-none bg-transparent w-full border-none text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" id="afternoonStatus" name="afternoonStatus" value="" placeholder="Status" aria-label="Full name" readonly>
+                </div>
+            </div>
+        </div>    
+    </section>
+</body>
 </html>
