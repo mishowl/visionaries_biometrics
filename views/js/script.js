@@ -5,7 +5,7 @@ $(function() {
         var empID = $("#empID").val();
 
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "ajax/getEmpLog_ajax.php",
             data: {"empID" : empID},
             cache: false,
